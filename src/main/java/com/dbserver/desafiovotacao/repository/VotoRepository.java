@@ -11,8 +11,8 @@ import java.util.Optional;
 @Repository
 public interface VotoRepository extends JpaRepository<Voto, Long> {
 	
-    Optional<Voto> findBySessaoAndAssociadoCpf(SessaoVotacao sessao, String cpf); //TODO buscaPorSessaoECpf
+    Optional<Voto> findBySessaoAndAssociadoCpf(SessaoVotacao sessao, String cpf);
     
-    List<Voto> findAllBySessao(SessaoVotacao sessao); //TODO buscaTodosPorSessao
+    List<Voto> findAllBySessao(SessaoVotacao sessao);
     
 }
