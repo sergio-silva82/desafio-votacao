@@ -34,6 +34,7 @@ public class VotoService {
      * @param sessaoId : id da sessão de votação vinculado a pauta
      * @param cpf : número único do associado
      * @param opcao : 1=SIM / 2=NAO
+     * @throws IllegalArgumentException
      * @return
      */
     public Voto votar(Long sessaoId, String cpf, int opcao) {
