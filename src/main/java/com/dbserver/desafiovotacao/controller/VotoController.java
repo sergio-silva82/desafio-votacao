@@ -16,6 +16,11 @@ import com.dbserver.desafiovotacao.service.VotoService;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Controlador REST pra operações de votação
+ * @author sergio.monte
+ *
+ */
 @RestController
 @RequestMapping("/api/votos")
 @RequiredArgsConstructor
@@ -23,6 +28,13 @@ public class VotoController {
 
     private final VotoService votoService;
 
+    /**
+     * Registra o voto do associado por sessão e cpf
+     * @param sessaoId
+     * @param cpf
+     * @param opcao
+     * @return 200 para voto ok / 406 para não votado
+     */
     @PostMapping
     public ResponseEntity<?> votar(
             @RequestParam Long sessaoId,
@@ -37,6 +49,11 @@ public class VotoController {
 		}
     }
 
+    /**
+     * Busca e totaliza os votos pra uma sessão específica
+     * @param sessaoId
+     * @return texto com o total de votos sim/não
+     */
     @GetMapping("/resultado")
     public ResponseEntity<String> resultado(@RequestParam Long sessaoId) {
         List<Voto> votos = votoService.listarVotosPorSessao(sessaoId);

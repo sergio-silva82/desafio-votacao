@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * Controlador REST pra operações com o cpf do associado
+ * @author sergio.monte
+ *
+ */
 @RestController
 @RequestMapping("/api/validador-cpf")
 @RequiredArgsConstructor
@@ -20,7 +25,12 @@ public class ValidadorCpfController {
     
 	private final ValidadorCpfService validadorCpf;
 
-    @GetMapping("/permite-votar")
+    /**
+     * Verifica se o cpf está habilitado pra votar
+     * @param cpf
+     * @return retorna 200 pra apto pra votar e 404 pra não apto
+     */
+	@GetMapping("/permite-votar")
     public ResponseEntity<Map<String, String>> validarSePodeVotar( @RequestParam String cpf) {
         if(validadorCpf.isCpfValido(cpf)) {
         	if(validadorCpf.isCpfPodeVotar(cpf)) {
