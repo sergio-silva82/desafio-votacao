@@ -13,6 +13,6 @@ public interface VotoRepository extends JpaRepository<Voto, Long> {
 	
     Optional<Voto> findBySessaoAndAssociadoCpf(SessaoVotacao sessao, String cpf);
     
-    List<Voto> findAllBySessao(SessaoVotacao sessao);
+    List<Voto> buscaTodosPorSessao(SessaoVotacao sessao);
     
 }
