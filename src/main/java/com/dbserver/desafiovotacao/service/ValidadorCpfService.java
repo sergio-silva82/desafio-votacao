@@ -12,6 +12,11 @@ public class ValidadorCpfService {
 
     private final Random RANDOM = new Random();
 
+    /**
+     * Método que valida um cpf retornando true=valido / false=inválido
+     * @param cpf : número a ser validado
+     * @return
+     */
     public boolean isCpfValido(String cpf) {
         if (cpf == null) {
             return false;
@@ -67,7 +72,7 @@ public class ValidadorCpfService {
 
     /**
      * Método que retorna resultados aleatórios se pode votar ou não.
-     * @param cpf
+     * @param cpf : Identificação do associado
      * @return
      */
     public boolean isCpfPodeVotar(String cpf) {

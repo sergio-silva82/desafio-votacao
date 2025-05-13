@@ -23,7 +23,7 @@ public class PautaService {
     }
 
     /**
-     * Método que retornauma lista de Pautas já cadastradas
+     * Método que retorna uma lista de Pautas já cadastradas
      * @return
      */
     public List<Pauta> listarPautas() {

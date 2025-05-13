@@ -29,6 +29,13 @@ public class VotoService {
     private final SessaoVotacaoRepository sessaoRepository;
     private final ValidadorCpfService validadoCpfService;
 
+    /**
+     * Método que realiza o voto baseado em um número único do associado(cpf)
+     * @param sessaoId : id da sessão de votação vinculado a pauta
+     * @param cpf : número único do associado
+     * @param opcao : 1=SIM / 2=NAO
+     * @return
+     */
     public Voto votar(Long sessaoId, String cpf, int opcao) {
         
     	SessaoVotacao sessao = sessaoRepository.findById(sessaoId).orElseGet(() -> {
@@ -51,7 +58,7 @@ public class VotoService {
             throw new IllegalArgumentException(NAO_PODE_VOTAR);
         }
 
-        votoRepository.findBySessaoAndAssociadoCpf(sessao, cpf)
+        votoRepository.buscaPorSessaoECpfAssociado(sessao, cpf)
                 .ifPresent(v -> { 
                 	log.error(JA_VOTOU_NA_PAUTA);
                 	throw new IllegalArgumentException(JA_VOTOU_NA_PAUTA);
@@ -65,8 +72,13 @@ public class VotoService {
         return votoRepository.save(voto);
     }
 
+    /**
+     * Método que retorna a lista de votos computados em uma sessão
+     * @param sessaoId
+     * @return
+     */
     public List<Voto> listarVotosPorSessao(Long sessaoId) {
         SessaoVotacao sessao = sessaoRepository.findById(sessaoId).orElseThrow(() -> new IllegalArgumentException("Sessão não encontrada"));
-        return votoRepository.findAllBySessao(sessao);
+        return votoRepository.buscaTodosPorSessao(sessao);
     }
 }
