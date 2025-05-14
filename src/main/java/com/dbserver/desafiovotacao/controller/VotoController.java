@@ -57,11 +57,16 @@ public class VotoController {
     @GetMapping("/resultado")
     public ResponseEntity<String> resultado(@RequestParam Long sessaoId) {
         List<Voto> votos = votoService.listarVotosPorSessao(sessaoId);
-        long sim = votos.stream().filter(v -> v.getVoto() == SimNaoEnum.SIM).count();
-        long nao = votos.stream().filter(v -> v.getVoto() == SimNaoEnum.NAO).count();
-
-        String nomePauta = votos.get(0).getSessao().getPauta().getNome();
-        String resultado = String.format("Pauta: " + nomePauta + " = SIM: %d votos | NÃO: %d votos", sim, nao);
+        String resultado = "";
+        try {
+	        long sim = votos.stream().filter(v -> v.getVoto() == SimNaoEnum.SIM).count();
+	        long nao = votos.stream().filter(v -> v.getVoto() == SimNaoEnum.NAO).count();
+	
+	        String nomePauta = votos.get(0).getSessao().getPauta().getNome();
+	        resultado = String.format("Pauta: " + nomePauta + " = SIM: %d votos | NÃO: %d votos", sim, nao);
+        } catch(IndexOutOfBoundsException e) {
+        	resultado = "Sem Votação";
+        }
         return ResponseEntity.ok(resultado);
     }
 }
