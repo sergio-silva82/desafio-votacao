@@ -133,3 +133,18 @@ O aplicativo envia uma requisição POST para a url informada e com o body defin
 - Java 11+
 - Maven 3.6+
 - Git (opcional)
+
+---
+
+## Compilação e execução
+
+mvn clean install
+mvn spring-boot:run
+
+---
+
+## 🧪 Testes via Postman
+
+Você pode testar os endpoints da API com a collection disponível em:
+postman/Desafio-Votacao.postman_collection.json
+
