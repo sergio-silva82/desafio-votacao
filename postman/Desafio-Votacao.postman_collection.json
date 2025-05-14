@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "f9f47f65-1b60-4e93-b5e6-c3e110068afc",
+		"name": "Desafio-Votacao",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44898134",
+		"_collection_link": "https://sergiosilva-730375.postman.co/workspace/Sergio-Silva's-Workspace~ecbbd986-7aa5-4d0d-8a66-fc6d172ed408/collection/44898134-f9f47f65-1b60-4e93-b5e6-c3e110068afc?action=share&source=collection_link&creator=44898134"
+	},
+	"item": [
+		{
+			"name": "validador-cpf - permite-votar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/validador-cpf/permite-votar?cpf=74244728287",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"validador-cpf",
+						"permite-votar"
+					],
+					"query": [
+						{
+							"key": "cpf",
+							"value": "74244728287"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pautas - cadastro",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Abertura da Padaria as 10h\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/pautas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pautas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pautas - listar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/pautas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pautas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sessoes - abrir",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/sessoes/abrir?pautaId=1&duracaoMinutos=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sessoes",
+						"abrir"
+					],
+					"query": [
+						{
+							"key": "pautaId",
+							"value": "1"
+						},
+						{
+							"key": "duracaoMinutos",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "votos - votar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/votos?sessaoId=1&cpf=74244728287&opcao=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"votos"
+					],
+					"query": [
+						{
+							"key": "sessaoId",
+							"value": "1"
+						},
+						{
+							"key": "cpf",
+							"value": "74244728287"
+						},
+						{
+							"key": "opcao",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "votos - resultado",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/votos/resultado?sessaoId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"votos",
+						"resultado"
+					],
+					"query": [
+						{
+							"key": "sessaoId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
