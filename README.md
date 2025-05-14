@@ -115,3 +115,21 @@ A tela do tipo SELECAO exibe uma lista de opções para que o usuário.
 O aplicativo envia uma requisição POST para a url informada e com o body definido pelo objeto dentro de cada item da lista de seleção, quando o mesmo é acionado, semelhando ao funcionamento dos botões da tela FORMULARIO.
 
 # desafio-votacao
+
+## 📦 Tecnologias
+
+- Java 11
+- Spring Boot 2.7.18
+- Spring Data JPA
+- Banco de dados H2 (persistência em arquivo)
+- JUnit 5 + Mockito
+- SLF4J (logging)
+- Lombok
+
+---
+
+## 💻 Pré-requisitos
+
+- Java 11+
+- Maven 3.6+
+- Git (opcional)
