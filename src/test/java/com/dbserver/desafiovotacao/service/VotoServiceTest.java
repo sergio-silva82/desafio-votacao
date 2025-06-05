@@ -5,6 +5,9 @@ import com.dbserver.desafiovotacao.entity.Voto;
 import com.dbserver.desafiovotacao.enums.SimNaoEnum;
 import com.dbserver.desafiovotacao.repository.SessaoVotacaoRepository;
 import com.dbserver.desafiovotacao.repository.VotoRepository;
+import com.dbserver.desafiovotacao.service.interfaces.IValidadorCpfService;
+import com.dbserver.desafiovotacao.service.interfaces.IVotoService;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,10 +28,10 @@ class VotoServiceTest {
     private SessaoVotacaoRepository sessaoRepository;
 
     @Mock
-    private ValidadorCpfService cpfValidationService;
+    private IValidadorCpfService cpfValidationService;
 
     @InjectMocks
-    private VotoService votoService;
+    private IVotoService votoService;
 
     public VotoServiceTest() {
         MockitoAnnotations.openMocks(this);

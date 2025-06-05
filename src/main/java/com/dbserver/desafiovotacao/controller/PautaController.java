@@ -1,7 +1,8 @@
 package com.dbserver.desafiovotacao.controller;
 
 import com.dbserver.desafiovotacao.entity.Pauta;
-import com.dbserver.desafiovotacao.service.PautaService;
+import com.dbserver.desafiovotacao.service.interfaces.IPautaService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PautaController {
 
-    private final PautaService pautaService;
+    private final IPautaService pautaService;
 
     /**
      * Cria uma pauta passando somente o título da mesma.

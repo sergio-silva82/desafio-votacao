@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dbserver.desafiovotacao.entity.Voto;
 import com.dbserver.desafiovotacao.enums.SimNaoEnum;
-import com.dbserver.desafiovotacao.service.VotoService;
+import com.dbserver.desafiovotacao.service.interfaces.IVotoService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VotoController {
 
-    private final VotoService votoService;
+    private final IVotoService votoService;
 
     /**
      * Registra o voto do associado por sessão e cpf

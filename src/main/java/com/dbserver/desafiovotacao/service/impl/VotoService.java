@@ -1,4 +1,4 @@
-package com.dbserver.desafiovotacao.service;
+package com.dbserver.desafiovotacao.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,6 +10,8 @@ import com.dbserver.desafiovotacao.entity.Voto;
 import com.dbserver.desafiovotacao.enums.SimNaoEnum;
 import com.dbserver.desafiovotacao.repository.SessaoVotacaoRepository;
 import com.dbserver.desafiovotacao.repository.VotoRepository;
+import com.dbserver.desafiovotacao.service.interfaces.IValidadorCpfService;
+import com.dbserver.desafiovotacao.service.interfaces.IVotoService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class VotoService {
+public class VotoService implements IVotoService{
 
     private final String NAO_PODE_VOTAR = "Associado não pode votar";
     private final String JA_VOTOU_NA_PAUTA = "Associado já votou nesta pauta";
@@ -27,16 +29,8 @@ public class VotoService {
 
 	private final VotoRepository votoRepository;
     private final SessaoVotacaoRepository sessaoRepository;
-    private final ValidadorCpfService validadoCpfService;
+    private final IValidadorCpfService validadorCpfService;
 
-    /**
-     * Método que realiza o voto baseado em um número único do associado(cpf)
-     * @param sessaoId : id da sessão de votação vinculado a pauta
-     * @param cpf : número único do associado
-     * @param opcao : 1=SIM / 2=NAO
-     * @throws IllegalArgumentException
-     * @return
-     */
     public Voto votar(Long sessaoId, String cpf, int opcao) {
         
     	SessaoVotacao sessao = sessaoRepository.findById(sessaoId).orElseGet(() -> {
@@ -49,12 +43,12 @@ public class VotoService {
             throw new IllegalArgumentException(SESSAO_ENCERRADA);
         }
 
-        if (!validadoCpfService.isCpfValido(cpf)) {
+        if (!validadorCpfService.isCpfValido(cpf)) {
         	log.error(CPF_INVALIDO);
             throw new IllegalArgumentException(CPF_INVALIDO);
         }
 
-        if (!validadoCpfService.isCpfPodeVotar(cpf)) {
+        if (!validadorCpfService.isCpfPodeVotar(cpf)) {
         	log.error(NAO_PODE_VOTAR);
             throw new IllegalArgumentException(NAO_PODE_VOTAR);
         }
@@ -73,11 +67,6 @@ public class VotoService {
         return votoRepository.save(voto);
     }
 
-    /**
-     * Método que retorna a lista de votos computados em uma sessão
-     * @param sessaoId
-     * @return
-     */
     public List<Voto> listarVotosPorSessao(Long sessaoId) {
         SessaoVotacao sessao = sessaoRepository.findById(sessaoId).orElseThrow(() -> new IllegalArgumentException("Sessão não encontrada"));
         return votoRepository.buscaTodosPorSessao(sessao);

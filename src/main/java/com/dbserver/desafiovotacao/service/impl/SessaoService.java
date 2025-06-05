@@ -1,4 +1,4 @@
-package com.dbserver.desafiovotacao.service;
+package com.dbserver.desafiovotacao.service.impl;
 
 import java.time.LocalDateTime;
 
@@ -9,22 +9,17 @@ import com.dbserver.desafiovotacao.entity.Pauta;
 import com.dbserver.desafiovotacao.entity.SessaoVotacao;
 import com.dbserver.desafiovotacao.repository.PautaRepository;
 import com.dbserver.desafiovotacao.repository.SessaoVotacaoRepository;
+import com.dbserver.desafiovotacao.service.interfaces.ISessaoService;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SessaoService {
+public class SessaoService implements ISessaoService {
 	private final SessaoVotacaoRepository sessaoVotacaoRepository;
 	private final PautaRepository pautaRepository;
 	private final VotacaoProperties votacaoConfiguracao;
 	
-	/**
-	 * Método que abre a sessão de votação inserindo o início e o fim da mesma
-	 * @param pautaId : Id da pauta a ser votada
-	 * @param duracaoSessao : duração da sessão em minutos, se não informado o padrão é o da properties
-	 * @return
-	 */
 	public SessaoVotacao abrirSessao (Long pautaId, Integer duracaoSessao) {
 		Pauta pauta = pautaRepository.findById(pautaId).orElseThrow(
 				() -> new IllegalArgumentException("A Pauta não foi encontrada!"));

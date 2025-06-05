@@ -1,7 +1,8 @@
 package com.dbserver.desafiovotacao.controller;
 
 import com.dbserver.desafiovotacao.entity.Voto;
-import com.dbserver.desafiovotacao.service.VotoService;
+import com.dbserver.desafiovotacao.service.interfaces.IVotoService;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ class VotoControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private VotoService votoService;
+    private IVotoService votoService;
 
     @Test
     void devePermitirVoto() throws Exception {

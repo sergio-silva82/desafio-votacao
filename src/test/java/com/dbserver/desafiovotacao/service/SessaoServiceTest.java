@@ -5,6 +5,8 @@ import com.dbserver.desafiovotacao.entity.Pauta;
 import com.dbserver.desafiovotacao.entity.SessaoVotacao;
 import com.dbserver.desafiovotacao.repository.PautaRepository;
 import com.dbserver.desafiovotacao.repository.SessaoVotacaoRepository;
+import com.dbserver.desafiovotacao.service.interfaces.ISessaoService;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -27,7 +29,7 @@ class SessaoServiceTest {
     private VotacaoProperties votacaoConfiguracao;
 
     @InjectMocks
-    private SessaoService sessaoService;
+    private ISessaoService sessaoService;
 
     public SessaoServiceTest() {
         MockitoAnnotations.openMocks(this);

@@ -1,11 +1,12 @@
 package com.dbserver.desafiovotacao.controller;
 
-import com.dbserver.desafiovotacao.service.ValidadorCpfService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.dbserver.desafiovotacao.service.interfaces.IValidadorCpfService;
 
 import java.util.Map;
 
@@ -23,7 +24,7 @@ public class ValidadorCpfController {
     private final String ABLE_VOTE = "ABLE_TO_VOTE";
     private final String STATUS = "status";
     
-	private final ValidadorCpfService validadorCpf;
+	private final IValidadorCpfService validadorCpf;
 
     /**
      * Verifica se o cpf está habilitado pra votar

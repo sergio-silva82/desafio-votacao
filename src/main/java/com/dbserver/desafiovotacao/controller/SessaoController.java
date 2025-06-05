@@ -1,7 +1,8 @@
 package com.dbserver.desafiovotacao.controller;
 
 import com.dbserver.desafiovotacao.entity.SessaoVotacao;
-import com.dbserver.desafiovotacao.service.SessaoService;
+import com.dbserver.desafiovotacao.service.interfaces.ISessaoService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class SessaoController {
 
-    private final SessaoService sessaoService;
+    private final ISessaoService sessaoService;
 
     /**
      * Abre um sessão de votação com início e fim pré-definidos

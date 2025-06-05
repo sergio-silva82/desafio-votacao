@@ -1,7 +1,8 @@
 package com.dbserver.desafiovotacao.controller;
 
 import com.dbserver.desafiovotacao.entity.SessaoVotacao;
-import com.dbserver.desafiovotacao.service.SessaoService;
+import com.dbserver.desafiovotacao.service.interfaces.ISessaoService;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ class SessaoControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private SessaoService sessaoService;
+    private ISessaoService sessaoService;
 
     @Test
     void deveAbrirSessao() throws Exception {

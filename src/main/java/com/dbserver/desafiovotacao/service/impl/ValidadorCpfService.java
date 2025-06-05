@@ -1,6 +1,8 @@
-package com.dbserver.desafiovotacao.service;
+package com.dbserver.desafiovotacao.service.impl;
 
 import org.springframework.stereotype.Service;
+
+import com.dbserver.desafiovotacao.service.interfaces.IValidadorCpfService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,15 +10,10 @@ import java.util.Random;
 
 @Slf4j
 @Service
-public class ValidadorCpfService { 
+public class ValidadorCpfService implements IValidadorCpfService { 
 
     private final Random RANDOM = new Random();
 
-    /**
-     * Método que valida um cpf retornando true=valido / false=inválido
-     * @param cpf : número a ser validado
-     * @return
-     */
     public boolean isCpfValido(String cpf) {
         if (cpf == null) {
             return false;
@@ -64,17 +61,12 @@ public class ValidadorCpfService {
 		}
     }
     
-    public String mascararCpf(String cpf) {
+    private String mascararCpf(String cpf) {
         cpf = cpf.replaceAll("[^\\d]", "");
         if (cpf.length() != 11) return "***";
         return "***.***.***-" + cpf.substring(9);
     }
 
-    /**
-     * Método que retorna resultados aleatórios se pode votar ou não.
-     * @param cpf : Identificação do associado
-     * @return
-     */
     public boolean isCpfPodeVotar(String cpf) {
         return RANDOM.nextBoolean();
     }
