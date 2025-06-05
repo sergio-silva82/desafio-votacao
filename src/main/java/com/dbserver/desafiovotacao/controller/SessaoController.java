@@ -1,6 +1,6 @@
 package com.dbserver.desafiovotacao.controller;
 
-import com.dbserver.desafiovotacao.entity.SessaoVotacao;
+import com.dbserver.desafiovotacao.dto.SessaoVotacaoDTO;
 import com.dbserver.desafiovotacao.service.interfaces.ISessaoService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,11 +26,11 @@ public class SessaoController {
      * @return
      */
     @PostMapping("/abrir")
-    public ResponseEntity<SessaoVotacao> abrirSessao(
+    public ResponseEntity<SessaoVotacaoDTO> abrirSessao(
             @RequestParam Long pautaId,
             @RequestParam(required = false) Integer duracaoMinutos
     ) {
-        SessaoVotacao sessao = sessaoService.abrirSessao(pautaId, duracaoMinutos);
+        SessaoVotacaoDTO sessao = sessaoService.abrirSessao(pautaId, duracaoMinutos);
         return ResponseEntity.ok(sessao);
     }
 }

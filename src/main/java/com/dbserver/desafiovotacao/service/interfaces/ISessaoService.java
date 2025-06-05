@@ -1,6 +1,6 @@
 package com.dbserver.desafiovotacao.service.interfaces;
 
-import com.dbserver.desafiovotacao.entity.SessaoVotacao;
+import com.dbserver.desafiovotacao.dto.SessaoVotacaoDTO;
 
 public interface ISessaoService {
 	/**
@@ -9,5 +9,5 @@ public interface ISessaoService {
 	 * @param duracaoSessao : duração da sessão em minutos, se não informado o padrão é o da properties
 	 * @return
 	 */
-	public SessaoVotacao abrirSessao (Long pautaId, Integer duracaoSessao);
+	public SessaoVotacaoDTO abrirSessao (Long pautaId, Integer duracaoSessao);
 }
