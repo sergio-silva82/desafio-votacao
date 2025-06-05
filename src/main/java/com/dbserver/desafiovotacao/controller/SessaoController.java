@@ -27,7 +27,7 @@ public class SessaoController {
      */
     @PostMapping("/abrir")
     public ResponseEntity<SessaoVotacaoDTO> abrirSessao(
-            @RequestParam Long pautaId,
+            @RequestParam(required = true) Long pautaId,
             @RequestParam(required = false) Integer duracaoMinutos
     ) {
         SessaoVotacaoDTO sessao = sessaoService.abrirSessao(pautaId, duracaoMinutos);

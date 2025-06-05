@@ -1,11 +1,12 @@
 package com.dbserver.desafiovotacao.service;
 
 import com.dbserver.desafiovotacao.config.VotacaoProperties;
+import com.dbserver.desafiovotacao.dto.SessaoVotacaoDTO;
 import com.dbserver.desafiovotacao.entity.Pauta;
 import com.dbserver.desafiovotacao.entity.SessaoVotacao;
 import com.dbserver.desafiovotacao.repository.PautaRepository;
 import com.dbserver.desafiovotacao.repository.SessaoVotacaoRepository;
-import com.dbserver.desafiovotacao.service.interfaces.ISessaoService;
+import com.dbserver.desafiovotacao.service.impl.SessaoService;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -29,7 +30,7 @@ class SessaoServiceTest {
     private VotacaoProperties votacaoConfiguracao;
 
     @InjectMocks
-    private ISessaoService sessaoService;
+    private SessaoService sessaoService;
 
     public SessaoServiceTest() {
         MockitoAnnotations.openMocks(this);
@@ -39,13 +40,15 @@ class SessaoServiceTest {
     void deveAbrirSessaoComDuracaoDefinida() {
         Pauta pauta = new Pauta();
         pauta.setId(1L);
+        pauta.setNome("Teste de pauta");
 
         when(pautaRepository.findById(1L)).thenReturn(Optional.of(pauta));
 
         SessaoVotacao sessaoSalva = new SessaoVotacao();
+        sessaoSalva.setPauta(pauta);
         when(sessaoRepository.save(any())).thenReturn(sessaoSalva);
 
-        SessaoVotacao resultado = sessaoService.abrirSessao(1L, 5);
+        SessaoVotacaoDTO resultado = sessaoService.abrirSessao(1L, 5);
 
         assertNotNull(resultado);
         verify(sessaoRepository, times(1)).save(any());

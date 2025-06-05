@@ -2,6 +2,8 @@ package com.dbserver.desafiovotacao.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,9 +39,9 @@ public class VotoController {
      */
     @PostMapping
     public ResponseEntity<?> votar(
-            @RequestParam Long sessaoId,
-            @RequestParam String cpf,
-            @RequestParam int opcao
+            @RequestParam(required = true) @Valid Long sessaoId,
+            @RequestParam(required = true) @Valid String cpf,
+            @RequestParam(required = true) @Valid int opcao
     ) {
         try {
 			VotoDTO voto = votoService.votar(sessaoId, cpf, opcao);
@@ -55,7 +57,7 @@ public class VotoController {
      * @return texto com o total de votos sim/não
      */
     @GetMapping("/resultado")
-    public ResponseEntity<String> resultado(@RequestParam Long sessaoId) {
+    public ResponseEntity<String> resultado(@RequestParam(required = true) @Valid Long sessaoId) {
         List<VotoDTO> votos = votoService.listarVotosPorSessao(sessaoId);
         String resultado = "";
         try {

@@ -1,6 +1,6 @@
 package com.dbserver.desafiovotacao.controller;
 
-import com.dbserver.desafiovotacao.entity.Voto;
+import com.dbserver.desafiovotacao.dto.VotoDTO;
 import com.dbserver.desafiovotacao.service.interfaces.IVotoService;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ class VotoControllerTest {
 
     @Test
     void devePermitirVoto() throws Exception {
-        Mockito.when(votoService.votar(anyLong(), anyString(), anyInt())).thenReturn(new Voto());
+        Mockito.when(votoService.votar(anyLong(), anyString(), anyInt())).thenReturn(new VotoDTO());
 
         mockMvc.perform(post("/api/votos?sessaoId=1&cpf=12345678900&opcao=1")
         		.contentType("application/json"))

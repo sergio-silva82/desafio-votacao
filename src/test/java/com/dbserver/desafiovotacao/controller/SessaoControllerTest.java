@@ -1,6 +1,6 @@
 package com.dbserver.desafiovotacao.controller;
 
-import com.dbserver.desafiovotacao.entity.SessaoVotacao;
+import com.dbserver.desafiovotacao.dto.SessaoVotacaoDTO;
 import com.dbserver.desafiovotacao.service.interfaces.ISessaoService;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ class SessaoControllerTest {
 
     @Test
     void deveAbrirSessao() throws Exception {
-        Mockito.when(sessaoService.abrirSessao(anyLong(), any())).thenReturn(new SessaoVotacao());
+        Mockito.when(sessaoService.abrirSessao(anyLong(), any())).thenReturn(new SessaoVotacaoDTO());
 
         mockMvc.perform(post("/api/sessoes/abrir?pautaId=1&duracaoMinutos=5"))
                 .andExpect(status().isOk());

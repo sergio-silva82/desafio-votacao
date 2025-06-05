@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 /**
  * Controlador REST pra operações ligadas a pauta de votação
  * @author sergio.monte
@@ -27,7 +29,7 @@ public class PautaController {
      * @return
      */
     @PostMapping
-    public ResponseEntity<PautaDTO> criarPauta(@RequestBody PautaDTO pauta) {
+    public ResponseEntity<PautaDTO> criarPauta(@RequestBody @Valid PautaDTO pauta) {
     	PautaDTO novaPauta = pautaService.criarPauta(pauta);
         return ResponseEntity.ok(novaPauta);
     }

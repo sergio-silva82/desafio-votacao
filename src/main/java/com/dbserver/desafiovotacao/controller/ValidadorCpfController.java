@@ -32,7 +32,7 @@ public class ValidadorCpfController {
      * @return retorna 200 pra apto pra votar e 404 pra não apto
      */
 	@GetMapping("/permite-votar")
-    public ResponseEntity<Map<String, String>> validarSePodeVotar( @RequestParam String cpf) {
+    public ResponseEntity<Map<String, String>> validarSePodeVotar( @RequestParam(required = true) String cpf) {
         if(validadorCpf.isCpfValido(cpf)) {
         	if(validadorCpf.isCpfPodeVotar(cpf)) {
         		return ResponseEntity.ok(Map.of(STATUS, ABLE_VOTE));
