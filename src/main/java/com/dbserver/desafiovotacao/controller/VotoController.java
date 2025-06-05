@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dbserver.desafiovotacao.entity.Voto;
+import com.dbserver.desafiovotacao.dto.VotoDTO;
 import com.dbserver.desafiovotacao.enums.SimNaoEnum;
 import com.dbserver.desafiovotacao.service.interfaces.IVotoService;
 
@@ -42,7 +42,7 @@ public class VotoController {
             @RequestParam int opcao
     ) {
         try {
-			Voto voto = votoService.votar(sessaoId, cpf, opcao);
+			VotoDTO voto = votoService.votar(sessaoId, cpf, opcao);
 			return ResponseEntity.ok(voto);
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Erro Voto: " + e.getMessage()); 
@@ -56,13 +56,13 @@ public class VotoController {
      */
     @GetMapping("/resultado")
     public ResponseEntity<String> resultado(@RequestParam Long sessaoId) {
-        List<Voto> votos = votoService.listarVotosPorSessao(sessaoId);
+        List<VotoDTO> votos = votoService.listarVotosPorSessao(sessaoId);
         String resultado = "";
         try {
-	        long sim = votos.stream().filter(v -> v.getVoto() == SimNaoEnum.SIM).count();
-	        long nao = votos.stream().filter(v -> v.getVoto() == SimNaoEnum.NAO).count();
+	        long sim = votos.stream().filter(v -> v.getOpcao() == SimNaoEnum.SIM.getId()).count();
+	        long nao = votos.stream().filter(v -> v.getOpcao() == SimNaoEnum.NAO.getId()).count();
 	
-	        String nomePauta = votos.get(0).getSessao().getPauta().getNome();
+	        String nomePauta = votos.get(0).getPautaNome();
 	        resultado = String.format("Pauta: " + nomePauta + " = SIM: %d votos | NÃO: %d votos", sim, nao);
         } catch(IndexOutOfBoundsException e) {
         	resultado = "Sem Votação";

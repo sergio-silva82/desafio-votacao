@@ -2,9 +2,11 @@ package com.dbserver.desafiovotacao.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.dbserver.desafiovotacao.dto.VotoDTO;
 import com.dbserver.desafiovotacao.entity.SessaoVotacao;
 import com.dbserver.desafiovotacao.entity.Voto;
 import com.dbserver.desafiovotacao.enums.SimNaoEnum;
@@ -31,7 +33,7 @@ public class VotoService implements IVotoService{
     private final SessaoVotacaoRepository sessaoRepository;
     private final IValidadorCpfService validadorCpfService;
 
-    public Voto votar(Long sessaoId, String cpf, int opcao) {
+    public VotoDTO votar(Long sessaoId, String cpf, int opcao) {
         
     	SessaoVotacao sessao = sessaoRepository.findById(sessaoId).orElseGet(() -> {
 														    		log.error(SESSAO_NAO_ENCONTRADA);
@@ -64,11 +66,29 @@ public class VotoService implements IVotoService{
         voto.setAssociadoCpf(cpf);
         voto.setVoto(SimNaoEnum.porId(opcao));
 
-        return votoRepository.save(voto);
+        votoRepository.save(voto);
+
+        return toDto(voto);
+        
     }
 
-    public List<Voto> listarVotosPorSessao(Long sessaoId) {
-        SessaoVotacao sessao = sessaoRepository.findById(sessaoId).orElseThrow(() -> new IllegalArgumentException("Sessão não encontrada"));
-        return votoRepository.buscaTodosPorSessao(sessao);
+    public List<VotoDTO> listarVotosPorSessao(Long sessaoId) {
+    	SessaoVotacao sessao = sessaoRepository.findById(sessaoId).orElseThrow(() -> new IllegalArgumentException("Sessão não encontrada"));
+        List<Voto> votoList = votoRepository.buscaTodosPorSessao(sessao);
+        List<VotoDTO> votosReturnList = votoList.stream()
+        		.map(this::toDto)
+        		.collect(Collectors.toList());
+        
+        return votosReturnList;
+    }
+
+    private VotoDTO toDto(Voto voto) {
+    	VotoDTO votoDTO = new VotoDTO();
+    	votoDTO.setCpf(voto.getAssociadoCpf());
+    	votoDTO.setSessaoId(voto.getSessao().getId());
+    	votoDTO.setOpcao(voto.getVoto().getId());
+    	votoDTO.setPautaNome(voto.getSessao().getPauta().getNome());
+    	
+    	return votoDTO;
     }
 }

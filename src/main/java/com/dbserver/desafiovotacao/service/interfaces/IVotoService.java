@@ -2,7 +2,7 @@ package com.dbserver.desafiovotacao.service.interfaces;
 
 import java.util.List;
 
-import com.dbserver.desafiovotacao.entity.Voto;
+import com.dbserver.desafiovotacao.dto.VotoDTO;
 
 public interface IVotoService {
 	/**
@@ -13,11 +13,11 @@ public interface IVotoService {
      * @throws IllegalArgumentException
      * @return
      */
-    public Voto votar(Long sessaoId, String cpf, int opcao);
+    public VotoDTO votar(Long sessaoId, String cpf, int opcao);
     /**
      * Método que retorna a lista de votos computados em uma sessão
      * @param sessaoId
      * @return
      */
-    public List<Voto> listarVotosPorSessao(Long sessaoId);
+    public List<VotoDTO> listarVotosPorSessao(Long sessaoId);
 }
