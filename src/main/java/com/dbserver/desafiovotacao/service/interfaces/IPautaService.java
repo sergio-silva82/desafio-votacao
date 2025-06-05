@@ -2,7 +2,7 @@ package com.dbserver.desafiovotacao.service.interfaces;
 
 import java.util.List;
 
-import com.dbserver.desafiovotacao.entity.Pauta;
+import com.dbserver.desafiovotacao.dto.PautaDTO;
 
 public interface IPautaService {
 	/**
@@ -10,10 +10,10 @@ public interface IPautaService {
      * @param pauta
      * @return
      */
-    public Pauta criarPauta(Pauta pauta);
+    public PautaDTO criarPauta(PautaDTO pauta);
     /**
      * Método que retorna uma lista de Pautas já cadastradas
      * @return
      */
-    public List<Pauta> listarPautas();
+    public List<PautaDTO> listarPautas();
 }

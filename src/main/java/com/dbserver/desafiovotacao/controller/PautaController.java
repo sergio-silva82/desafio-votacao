@@ -1,6 +1,6 @@
 package com.dbserver.desafiovotacao.controller;
 
-import com.dbserver.desafiovotacao.entity.Pauta;
+import com.dbserver.desafiovotacao.dto.PautaDTO;
 import com.dbserver.desafiovotacao.service.interfaces.IPautaService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,8 +27,8 @@ public class PautaController {
      * @return
      */
     @PostMapping
-    public ResponseEntity<Pauta> criarPauta(@RequestBody Pauta pauta) {
-        Pauta novaPauta = pautaService.criarPauta(pauta);
+    public ResponseEntity<PautaDTO> criarPauta(@RequestBody PautaDTO pauta) {
+    	PautaDTO novaPauta = pautaService.criarPauta(pauta);
         return ResponseEntity.ok(novaPauta);
     }
 
@@ -37,7 +37,7 @@ public class PautaController {
      * @return
      */
     @GetMapping
-    public ResponseEntity<List<Pauta>> listarPautas() {
+    public ResponseEntity<List<PautaDTO>> listarPautas() {
         return ResponseEntity.ok(pautaService.listarPautas());
     }
 }
