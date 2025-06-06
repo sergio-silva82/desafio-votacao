@@ -6,7 +6,7 @@
 
     <groupId>com.dbserver</groupId>
     <artifactId>desafio-votacao</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <properties>
         <java.version>11</java.version>
@@ -52,6 +52,11 @@
             <version>4.11.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.7.0</version>
+		</dependency>
     </dependencies>
 
     <dependencyManagement>
