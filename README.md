@@ -125,6 +125,7 @@ O aplicativo envia uma requisição POST para a url informada e com o body defin
 - JUnit 5 + Mockito
 - SLF4J (logging)
 - Lombok
+- Swagger 1.7
 
 ---
 
@@ -136,15 +137,19 @@ O aplicativo envia uma requisição POST para a url informada e com o body defin
 
 ---
 
-## Compilação e execução
+## 🚀 Compilação e execução
 
-mvn clean install
+mvn clean install<br/>
 mvn spring-boot:run
 
 ---
 
 ## 🧪 Testes via Postman
 
-Você pode testar os endpoints da API com a collection disponível em:
+Você pode testar os endpoints da API com a collection disponível em:<br/>
 postman/Desafio-Votacao.postman_collection.json
 
+## 🧪 Testes via Swagger
+
+Utilize a documentação swagger para teste da API, abaixo segue url local de exemplo:<br/>
+http://localhost:8080/swagger-ui/index.html
