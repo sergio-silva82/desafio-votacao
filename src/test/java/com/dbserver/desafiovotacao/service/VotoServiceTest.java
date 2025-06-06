@@ -50,7 +50,7 @@ class VotoServiceTest {
         when(sessaoRepository.findById(1L)).thenReturn(Optional.of(sessao));
         when(cpfValidationService.isCpfValido("123")).thenReturn(true);
         when(cpfValidationService.isCpfPodeVotar("123")).thenReturn(true);
-        when(votoRepository.buscaPorSessaoECpfAssociado(sessao, "123")).thenReturn(Optional.empty());
+        when(votoRepository.getBySessaoAndAssociadoCpf(sessao, "123")).thenReturn(Optional.empty());
         Voto voto = new Voto();
         voto.setSessao(sessao);
         when(votoRepository.save(any())).thenReturn(voto);

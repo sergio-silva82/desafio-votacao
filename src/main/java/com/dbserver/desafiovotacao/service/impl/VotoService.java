@@ -55,7 +55,7 @@ public class VotoService implements IVotoService{
             throw new IllegalArgumentException(NAO_PODE_VOTAR);
         }
 
-        votoRepository.buscaPorSessaoECpfAssociado(sessao, cpf)
+        votoRepository.getBySessaoAndAssociadoCpf(sessao, cpf)
                 .ifPresent(v -> { 
                 	log.error(JA_VOTOU_NA_PAUTA);
                 	throw new IllegalArgumentException(JA_VOTOU_NA_PAUTA);
@@ -74,7 +74,7 @@ public class VotoService implements IVotoService{
 
     public List<VotoDTO> listarVotosPorSessao(Long sessaoId) {
     	SessaoVotacao sessao = sessaoRepository.findById(sessaoId).orElseThrow(() -> new IllegalArgumentException("Sessão não encontrada"));
-        List<Voto> votoList = votoRepository.buscaTodosPorSessao(sessao);
+        List<Voto> votoList = votoRepository.findAllBySessao(sessao);
         List<VotoDTO> votosReturnList = votoList.stream()
         		.map(this::toDto)
         		.collect(Collectors.toList());

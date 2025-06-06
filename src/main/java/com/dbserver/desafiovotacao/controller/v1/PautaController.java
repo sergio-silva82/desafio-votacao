@@ -1,4 +1,4 @@
-package com.dbserver.desafiovotacao.controller;
+package com.dbserver.desafiovotacao.controller.v1;
 
 import com.dbserver.desafiovotacao.dto.PautaDTO;
 import com.dbserver.desafiovotacao.service.interfaces.IPautaService;
@@ -17,7 +17,7 @@ import javax.validation.Valid;
  *
  */
 @RestController
-@RequestMapping("/api/pautas")
+@RequestMapping("/api/v1/pautas")
 @RequiredArgsConstructor
 public class PautaController {
 

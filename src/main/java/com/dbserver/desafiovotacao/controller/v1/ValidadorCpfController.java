@@ -1,4 +1,4 @@
-package com.dbserver.desafiovotacao.controller;
+package com.dbserver.desafiovotacao.controller.v1;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +16,7 @@ import java.util.Map;
  *
  */
 @RestController
-@RequestMapping("/api/validador-cpf")
+@RequestMapping("/api/v1/validador-cpf")
 @RequiredArgsConstructor
 public class ValidadorCpfController {
 

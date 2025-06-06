@@ -1,4 +1,4 @@
-package com.dbserver.desafiovotacao.controller;
+package com.dbserver.desafiovotacao.controller.v1;
 
 import com.dbserver.desafiovotacao.dto.SessaoVotacaoDTO;
 import com.dbserver.desafiovotacao.service.interfaces.ISessaoService;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  *
  */
 @RestController
-@RequestMapping("/api/sessoes")
+@RequestMapping("/api/v1/sessoes")
 @RequiredArgsConstructor
 public class SessaoController {
 

@@ -1,4 +1,4 @@
-package com.dbserver.desafiovotacao.controller;
+package com.dbserver.desafiovotacao.controller.v1;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
  *
  */
 @RestController
-@RequestMapping("/api/votos")
+@RequestMapping("/api/v1/votos")
 @RequiredArgsConstructor
 public class VotoController {
 

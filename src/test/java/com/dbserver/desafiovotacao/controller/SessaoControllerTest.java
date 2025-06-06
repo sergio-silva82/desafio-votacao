@@ -1,5 +1,6 @@
 package com.dbserver.desafiovotacao.controller;
 
+import com.dbserver.desafiovotacao.controller.v1.SessaoController;
 import com.dbserver.desafiovotacao.dto.SessaoVotacaoDTO;
 import com.dbserver.desafiovotacao.service.interfaces.ISessaoService;
 
@@ -27,7 +28,7 @@ class SessaoControllerTest {
     void deveAbrirSessao() throws Exception {
         Mockito.when(sessaoService.abrirSessao(anyLong(), any())).thenReturn(new SessaoVotacaoDTO());
 
-        mockMvc.perform(post("/api/sessoes/abrir?pautaId=1&duracaoMinutos=5"))
+        mockMvc.perform(post("/api/v1/sessoes/abrir?pautaId=1&duracaoMinutos=5"))
                 .andExpect(status().isOk());
     }
 }

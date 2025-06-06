@@ -1,5 +1,6 @@
 package com.dbserver.desafiovotacao.controller;
 
+import com.dbserver.desafiovotacao.controller.v1.VotoController;
 import com.dbserver.desafiovotacao.dto.VotoDTO;
 import com.dbserver.desafiovotacao.service.interfaces.IVotoService;
 
@@ -30,7 +31,7 @@ class VotoControllerTest {
     void devePermitirVoto() throws Exception {
         Mockito.when(votoService.votar(anyLong(), anyString(), anyInt())).thenReturn(new VotoDTO());
 
-        mockMvc.perform(post("/api/votos?sessaoId=1&cpf=12345678900&opcao=1")
+        mockMvc.perform(post("/api/v1/votos?sessaoId=1&cpf=12345678900&opcao=1")
         		.contentType("application/json"))
                 .andExpect(status().isOk());
     }
@@ -39,7 +40,7 @@ class VotoControllerTest {
     void deveObterResultado() throws Exception {
         Mockito.when(votoService.listarVotosPorSessao(anyLong())).thenReturn(Collections.emptyList());
 
-        mockMvc.perform(get("/api/votos/resultado?sessaoId=1"))
+        mockMvc.perform(get("/api/v1/votos/resultado?sessaoId=1"))
                 .andExpect(status().isOk());
     }
 }

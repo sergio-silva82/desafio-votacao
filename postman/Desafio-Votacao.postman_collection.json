@@ -16,7 +16,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/validador-cpf/permite-votar?cpf=74244728287",
+					"raw": "http://localhost:8080/api/v1/validador-cpf/permite-votar?cpf=74244728287",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -24,6 +24,7 @@
 					"port": "8080",
 					"path": [
 						"api",
+						"v1",
 						"validador-cpf",
 						"permite-votar"
 					],
@@ -47,7 +48,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nome\": \"Abertura da Padaria as 10h\"\r\n}",
+					"raw": "{\r\n    \"nome\": \"Abertura da Padaria as 15h\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -55,7 +56,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/pautas",
+					"raw": "http://localhost:8080/api/v1/pautas",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -63,6 +64,7 @@
 					"port": "8080",
 					"path": [
 						"api",
+						"v1",
 						"pautas"
 					]
 				}
@@ -78,7 +80,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/pautas",
+					"raw": "http://localhost:8080/api/v1/pautas",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -86,6 +88,7 @@
 					"port": "8080",
 					"path": [
 						"api",
+						"v1",
 						"pautas"
 					]
 				}
@@ -101,7 +104,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/sessoes/abrir?pautaId=1&duracaoMinutos=5",
+					"raw": "http://localhost:8080/api/v1/sessoes/abrir?pautaId=1&duracaoMinutos=5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -109,6 +112,7 @@
 					"port": "8080",
 					"path": [
 						"api",
+						"v1",
 						"sessoes",
 						"abrir"
 					],
@@ -135,7 +139,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/votos?sessaoId=1&cpf=74244728287&opcao=1",
+					"raw": "http://localhost:8080/api/v1/votos?sessaoId=33&cpf=74244728287&opcao=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -143,12 +147,13 @@
 					"port": "8080",
 					"path": [
 						"api",
+						"v1",
 						"votos"
 					],
 					"query": [
 						{
 							"key": "sessaoId",
-							"value": "1"
+							"value": "33"
 						},
 						{
 							"key": "cpf",
@@ -156,7 +161,7 @@
 						},
 						{
 							"key": "opcao",
-							"value": "1"
+							"value": "2"
 						}
 					]
 				}
@@ -172,7 +177,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/votos/resultado?sessaoId=1",
+					"raw": "http://localhost:8080/api/v1/votos/resultado?sessaoId=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -180,6 +185,7 @@
 					"port": "8080",
 					"path": [
 						"api",
+						"v1",
 						"votos",
 						"resultado"
 					],
