@@ -16,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -78,5 +79,24 @@ class VotoServiceTest {
         when(cpfValidationService.isCpfValido("123")).thenReturn(false);
 
         assertThrows(IllegalArgumentException.class, () -> votoService.votar(1L, "123", SimNaoEnum.SIM.getId()));
+    }
+    
+    @Test
+    void deveListarVotosPorSessao() {
+        SessaoVotacao sessao = new SessaoVotacao();
+        sessao.setPauta(new Pauta());
+
+        Voto voto = new Voto();
+        voto.setAssociadoCpf("12345678901");
+        voto.setSessao(sessao);
+        voto.setVoto(SimNaoEnum.SIM);
+
+        when(sessaoRepository.findById(1L)).thenReturn(Optional.of(sessao));
+        when(votoRepository.findAllBySessao(sessao)).thenReturn(List.of(voto));
+
+        List<VotoDTO> resultado = votoService.listarVotosPorSessao(1L);
+
+        assertEquals(1, resultado.size());
+        assertEquals("12345678901", resultado.get(0).getCpf());
     }
 }

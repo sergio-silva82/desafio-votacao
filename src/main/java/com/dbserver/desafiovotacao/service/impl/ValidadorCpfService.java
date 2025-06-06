@@ -38,7 +38,7 @@ public class ValidadorCpfService implements IValidadorCpfService {
 
             return cpf.equals(cpf.substring(0, 9) + digito1 + digito2);
         } catch (Exception e) {
-        	log.error("Erro na validação do CPF: "+mascararCpf(cpf)+" ", e);
+        	log.error("Erro na validação do CPF ", e);
             return false;
         }
     }
@@ -56,15 +56,9 @@ public class ValidadorCpfService implements IValidadorCpfService {
 			int resto = soma % 11;
 			return (resto < 2) ? 0 : 11 - resto;
 		} catch (NumberFormatException e) {
-			log.error("Erro ao calcular o dígito do CPF: ", e);
+			log.error("Erro ao calcular o dígito do CPF ", e);
 			return 0;
 		}
-    }
-    
-    private String mascararCpf(String cpf) {
-        cpf = cpf.replaceAll("[^\\d]", "");
-        if (cpf.length() != 11) return "***";
-        return "***.***.***-" + cpf.substring(9);
     }
 
     public boolean isCpfPodeVotar(String cpf) {
