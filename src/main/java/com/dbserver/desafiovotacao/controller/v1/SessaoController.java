@@ -3,6 +3,8 @@ package com.dbserver.desafiovotacao.controller.v1;
 import com.dbserver.desafiovotacao.dto.SessaoVotacaoDTO;
 import com.dbserver.desafiovotacao.service.interfaces.ISessaoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,8 @@ public class SessaoController {
      * @param duracaoMinutos : inteiro pra minutos da sessão, se não informado usa a configuração do properties
      * @return
      */
+    @Operation(summary = "Abre um sessão de votação com início e fim pré-definidos")
+    @ApiResponse(responseCode = "200", description = "Retorna a confirmação do registro no formato SessaoVotacaoDTO")
     @PostMapping("/abrir")
     public ResponseEntity<SessaoVotacaoDTO> abrirSessao(
             @RequestParam(required = true) Long pautaId,

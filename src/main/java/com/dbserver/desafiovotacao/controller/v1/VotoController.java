@@ -16,6 +16,8 @@ import com.dbserver.desafiovotacao.dto.VotoDTO;
 import com.dbserver.desafiovotacao.enums.SimNaoEnum;
 import com.dbserver.desafiovotacao.service.interfaces.IVotoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -37,6 +39,9 @@ public class VotoController {
      * @param opcao
      * @return 200 para voto ok / 406 para não votado
      */
+    @Operation(summary = "Registra o voto do associado por sessão e cpf")
+    @ApiResponse(responseCode = "200", description = "Voto registrado com sucesso")
+    @ApiResponse(responseCode = "406", description = "Voto não registrado")
     @PostMapping
     public ResponseEntity<?> votar(
             @RequestParam(required = true) @Valid Long sessaoId,
@@ -56,6 +61,8 @@ public class VotoController {
      * @param sessaoId
      * @return texto com o total de votos sim/não
      */
+    @Operation(summary = "Busca e totaliza os votos pra uma sessão específica")
+    @ApiResponse(responseCode = "200", description = "Retorna texto com o total de votos sim/não")
     @GetMapping("/resultado")
     public ResponseEntity<String> resultado(@RequestParam(required = true) @Valid Long sessaoId) {
         List<VotoDTO> votos = votoService.listarVotosPorSessao(sessaoId);

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.dbserver.desafiovotacao.service.interfaces.IValidadorCpfService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 import java.util.Map;
 
 /**
@@ -31,6 +34,9 @@ public class ValidadorCpfController {
      * @param cpf
      * @return retorna 200 pra apto pra votar e 404 pra não apto
      */
+	@Operation(summary = "Verifica se o cpf está habilitado pra votar")
+    @ApiResponse(responseCode = "200", description = "Apto pra votar")
+	@ApiResponse(responseCode = "404", description = "Não apto pra votar")
 	@GetMapping("/permite-votar")
     public ResponseEntity<Map<String, String>> validarSePodeVotar( @RequestParam(required = true) String cpf) {
         if(validadorCpf.isCpfValido(cpf)) {
